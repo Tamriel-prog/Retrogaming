@@ -1,0 +1,248 @@
+:root {
+  color-scheme: dark;
+  --ink: #edf8ff;
+  --muted: #83a0a9;
+  --cyan: #3ff7ff;
+  --amber: #ffcf5a;
+  --hot: #ff4d7d;
+  --panel: #101820;
+  --edge: #2d4b59;
+  --floor: #071014;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(63, 247, 255, 0.16), transparent 28%),
+    radial-gradient(circle at 84% 72%, rgba(255, 77, 125, 0.13), transparent 30%),
+    linear-gradient(180deg, #111820, var(--floor) 68%);
+}
+
+button {
+  border: 1px solid var(--edge);
+  color: var(--ink);
+  background: #14212a;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.arcade-shell {
+  width: min(1180px, calc(100vw - 28px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 20px 0 18px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+}
+
+.marquee {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(63, 247, 255, 0.28);
+  border-radius: 8px;
+  background: rgba(10, 18, 23, 0.72);
+  box-shadow: 0 0 24px rgba(63, 247, 255, 0.08), inset 0 -3px 0 rgba(255, 255, 255, 0.04);
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: var(--amber);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  line-height: 0.86;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 #14212a, 0 0 20px rgba(63, 247, 255, 0.35);
+}
+
+.status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-strip span,
+.brief button {
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 0 10px;
+  background: rgba(15, 28, 35, 0.9);
+  border: 1px solid rgba(131, 160, 169, 0.28);
+}
+
+.cabinet {
+  position: relative;
+  width: 100%;
+  align-self: center;
+  border: 2px solid #365f70;
+  border-radius: 8px;
+  background: #020507;
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.42),
+    0 0 0 7px rgba(4, 9, 12, 0.85),
+    inset 0 0 34px rgba(63, 247, 255, 0.13);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  image-rendering: pixelated;
+  border-radius: 6px;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: screen;
+  opacity: 0.36;
+}
+
+.brief {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.brief button {
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+.mobile-pad {
+  display: none;
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.stick,
+.touch-actions {
+  pointer-events: auto;
+}
+
+.stick {
+  width: 128px;
+  height: 128px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.stick button,
+.touch-actions button {
+  border-radius: 8px;
+  background: rgba(12, 24, 31, 0.76);
+  color: var(--cyan);
+  font-weight: 900;
+  backdrop-filter: blur(3px);
+}
+
+.stick button:nth-child(1) {
+  grid-column: 2;
+}
+
+.stick button:nth-child(2) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.stick button:nth-child(3) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.stick button:nth-child(4) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.touch-actions {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+
+.touch-actions button {
+  width: 62px;
+  height: 62px;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 760px) {
+  .arcade-shell {
+    width: min(100vw - 16px, 1180px);
+    padding-top: 10px;
+  }
+
+  .marquee {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .status-strip {
+    justify-content: flex-start;
+  }
+
+  .brief {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mobile-pad {
+    display: flex;
+  }
+}

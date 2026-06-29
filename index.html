@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Void Corsair</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="arcade-shell">
+      <section class="marquee" aria-label="Intestazione gioco">
+        <div>
+          <p class="eyebrow">1987 deep-space side scroller</p>
+          <h1>Void Corsair</h1>
+        </div>
+        <div class="status-strip" aria-label="Comandi principali">
+          <span>Move: WASD / Arrows</span>
+          <span>Fire: Space</span>
+          <span>Charge: X</span>
+          <span>Pause: P</span>
+        </div>
+      </section>
+
+      <section class="cabinet" aria-label="Area di gioco">
+        <canvas id="game" width="960" height="540" aria-label="Void Corsair game canvas"></canvas>
+        <div class="scanlines" aria-hidden="true"></div>
+        <div class="mobile-pad" aria-label="Controlli touch">
+          <div class="stick" aria-hidden="true">
+            <button data-touch="up" title="Su">▲</button>
+            <button data-touch="left" title="Sinistra">◀</button>
+            <button data-touch="down" title="Giu">▼</button>
+            <button data-touch="right" title="Destra">▶</button>
+          </div>
+          <div class="touch-actions">
+            <button data-touch="charge" title="Carica">X</button>
+            <button data-touch="fire" title="Fuoco">●</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="brief">
+        <span>Un prototipo originale ispirato agli shooter arcade orizzontali: evita le barriere, raccogli moduli, sopravvivi al Leviathan.</span>
+        <button id="mute" type="button" aria-pressed="false">Audio On</button>
+      </footer>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>
