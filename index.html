@@ -18,6 +18,7 @@
           <span>Fire: Space</span>
           <span>Charge: X</span>
           <span>Pause: P</span>
+          <span>Quit: ESC</span>
         </div>
       </section>
 
@@ -37,6 +38,16 @@
           </div>
         </div>
       </section>
+
+      <div id="quit-overlay" aria-hidden="true">
+        <div id="quit-modal" role="dialog" aria-modal="true" aria-labelledby="quit-msg">
+          <p id="quit-msg">Sei sicuro di voler abbandonare la nave vecchio bucaniere dello spazio?</p>
+          <div class="modal-actions">
+            <button id="quit-yes">SI</button>
+            <button id="quit-no">NO</button>
+          </div>
+        </div>
+      </div>
 
       <footer class="brief">
         <span>Un prototipo originale ispirato agli shooter arcade orizzontali: evita le barriere, raccogli moduli, sopravvivi al Leviathan.</span>

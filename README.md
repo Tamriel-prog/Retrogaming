@@ -19,6 +19,7 @@ Navigate from left to right through procedurally spawned enemy waves. Your dista
 | Charged shot | Hold X, release | Hold X, release |
 | Precision movement | Hold Shift | — |
 | Pause | P | — |
+| Quit to title | ESC | — |
 
 ### Player stats (HUD)
 

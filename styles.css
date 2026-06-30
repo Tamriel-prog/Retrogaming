@@ -222,6 +222,79 @@ canvas {
   font-size: 1.2rem;
 }
 
+#quit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#quit-overlay.visible {
+  display: flex;
+}
+
+#quit-modal {
+  border: 2px solid var(--cyan);
+  border-radius: 10px;
+  background: #0b1822;
+  color: var(--ink);
+  padding: 32px 36px 28px;
+  max-width: 420px;
+  width: calc(100vw - 48px);
+  box-shadow: 0 0 48px rgba(63, 247, 255, 0.18), 0 16px 48px rgba(0, 0, 0, 0.72);
+  text-align: center;
+}
+
+#quit-modal #quit-msg {
+  margin: 0 0 28px;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.modal-actions button {
+  min-width: 88px;
+  min-height: 40px;
+  border-radius: 6px;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: box-shadow 0.12s;
+}
+
+#quit-yes {
+  border-color: var(--hot);
+  color: var(--hot);
+}
+
+#quit-yes:hover {
+  background: rgba(255, 77, 125, 0.14);
+  box-shadow: 0 0 12px rgba(255, 77, 125, 0.4);
+}
+
+#quit-no {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+#quit-no:hover {
+  background: rgba(63, 247, 255, 0.12);
+  box-shadow: 0 0 12px rgba(63, 247, 255, 0.35);
+}
+
 @media (max-width: 760px) {
   .arcade-shell {
     width: min(100vw - 16px, 1180px);

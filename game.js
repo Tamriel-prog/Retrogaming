@@ -31,7 +31,8 @@
     enemyShots: [],
     particles: [],
     powerups: [],
-    floatText: []
+    floatText: [],
+    quitPending: false
   };
 
   function makePlayer() {
@@ -79,6 +80,7 @@
     game.particles.length = 0;
     game.powerups.length = 0;
     game.floatText.length = 0;
+    game.quitPending = false;
     toast("LAUNCH", 110, game.player.y - 42, "#3ff7ff");
     beep(220, 0.08, "sawtooth", 0.05);
   }
@@ -527,7 +529,7 @@
     drawParticles();
     ctx.restore();
     drawHud();
-    if (game.state !== "running") drawOverlay();
+    if (game.state !== "running" && !game.quitPending) drawOverlay();
   }
 
   function drawBackground() {
@@ -820,9 +822,42 @@
   }
 
   function togglePause() {
+    if (game.quitPending) return;
     if (game.state === "running") game.state = "paused";
     else if (game.state === "paused") game.state = "running";
   }
+
+  const quitOverlay = document.querySelector("#quit-overlay");
+
+  function quitToTitle() {
+    quitOverlay.classList.remove("visible");
+    quitOverlay.setAttribute("aria-hidden", "true");
+    game.quitPending = false;
+    game.state = "title";
+    game.enemies.length = 0;
+    game.shots.length = 0;
+    game.enemyShots.length = 0;
+    game.particles.length = 0;
+    game.powerups.length = 0;
+    game.floatText.length = 0;
+  }
+
+  function openQuitModal() {
+    game.state = "paused";
+    game.quitPending = true;
+    quitOverlay.classList.add("visible");
+    quitOverlay.setAttribute("aria-hidden", "false");
+    document.querySelector("#quit-no").focus();
+  }
+
+  document.querySelector("#quit-yes").addEventListener("click", quitToTitle);
+
+  document.querySelector("#quit-no").addEventListener("click", () => {
+    quitOverlay.classList.remove("visible");
+    quitOverlay.setAttribute("aria-hidden", "true");
+    game.quitPending = false;
+    game.state = "running";
+  });
 
   window.addEventListener("keydown", (event) => {
     const key = event.key.toLowerCase();
@@ -830,6 +865,7 @@
     keys.add(key);
     if ((key === "enter" || key === " ") && ["title", "gameover", "victory"].includes(game.state)) reset();
     if (key === "p") togglePause();
+    if (key === "escape" && ["running", "paused"].includes(game.state) && !game.quitPending) openQuitModal();
   });
 
   window.addEventListener("keyup", (event) => keys.delete(event.key.toLowerCase()));
